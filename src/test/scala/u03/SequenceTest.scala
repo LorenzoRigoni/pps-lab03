@@ -32,6 +32,8 @@ class SequenceTest:
   @Test def testZip() =
     val l2: Sequence[String] = Cons("10", Cons("20", Cons("30", Nil())))
     assertEquals(Cons((10, "10"), Cons((20, "20"), Cons((30, "30"), Nil()))), zip(sequence, l2))
+    /*val l2: Sequence[String] = Cons("10", Cons("20", Nil()))
+    assertEquals(Cons((10, "10"), Cons((20, "20"), Nil())), zip(sequence, l2))*/
     assertEquals(Nil(), zip(sequence, Nil()))
     assertEquals(Nil(), zip(Nil(), l2))
     assertEquals(Nil(), zip(Nil(), Nil()))
@@ -47,6 +49,7 @@ class SequenceTest:
 
   @Test def testFlatMap() =
     assertEquals(Cons(11, Cons(21, Cons(31, Nil()))), flatMap(sequence)(v => Cons(v + 1, Nil())))
+    assertEquals(Cons(10, Cons(20, Cons(30, Nil()))), flatMap(sequence)(v => Cons(v, Nil())))
     assertEquals(Nil(), flatMap(Nil())(v => Cons(v, Nil())))
 
   @Test def testMin() =
